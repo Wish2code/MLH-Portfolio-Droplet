@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Placeholder fellow">
+  <circle cx="100" cy="100" r="100" fill="#6b7280"/>
+  <circle cx="100" cy="82" r="36" fill="#ffffff" opacity="0.85"/>
+  <ellipse cx="100" cy="168" rx="52" ry="40" fill="#ffffff" opacity="0.85"/>
+  <text x="100" y="108" text-anchor="middle" fill="#6b7280" font-family="Roboto, sans-serif" font-size="36" font-weight="700">?</text>
+</svg>
