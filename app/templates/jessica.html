@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="profile">
+    <div class="profile-picture">
+        <img src="{{ url_for('static', filename='img/' + profile.avatar) }}" alt="{{ profile.name }}">
+    </div>
+    <h1>{{ profile.name }}</h1>
+    <p class="profile-subtitle">{{ profile.title }}</p>
+</section>
+
+<main class="portfolio">
+    {% for section in sections %}
+    <section id="{{ section.id }}" class="portfolio-section">
+        <h2>{{ section.title }}</h2>
+        <p class="in-progress">In progress</p>
+    </section>
+    {% endfor %}
+</main>
+{% endblock %}
