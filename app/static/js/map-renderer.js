@@ -1,7 +1,7 @@
-(function renderSketchMap() {
+(function renderRealMap() {
     const root = document.getElementById("map-root");
     const payloadNode = document.getElementById("map-payload");
-    if (!root || !payloadNode) {
+    if (!root || !payloadNode || typeof L === "undefined") {
         return;
     }
 
@@ -13,158 +13,127 @@
     }
 
     const mapStyle = isObject(payload.map_style) ? payload.map_style : {};
-    const outlineColor = asColor(mapStyle.outline_color, "#66BB6A");
-    const backgroundColor = asColor(mapStyle.background_color, "#FFFFFF");
     const markerColor = asColor(mapStyle.marker_color, "#E02424");
-    const dotted = mapStyle.connector_style === "dotted";
+    const lineColor = "#000000";
 
-    const svgNs = "http://www.w3.org/2000/svg";
-    const width = 960;
-    const height = 520;
-    const padX = 20;
-    const padY = 20;
+    const map = L.map(root, { worldCopyJump: true }).setView([20, 0], 2);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
 
-    const svg = document.createElementNS(svgNs, "svg");
-    svg.setAttribute("class", "sketch-map");
-    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", "Sketch map with connected locations");
+    const locations = normalizeLocations(payload.locations);
+    if (locations.length) {
+        renderLocations(locations);
+    } else {
+        renderOpenApiFallbackPlaces();
+    }
 
-    const background = document.createElementNS(svgNs, "rect");
-    background.setAttribute("x", "0");
-    background.setAttribute("y", "0");
-    background.setAttribute("width", String(width));
-    background.setAttribute("height", String(height));
-    background.setAttribute("fill", backgroundColor);
-    svg.appendChild(background);
+    function renderLocations(locations) {
+        const bounds = [];
 
-    const worldOutline = document.createElementNS(svgNs, "path");
-    worldOutline.setAttribute(
-        "d",
-        "M55 210 C130 150, 250 120, 350 170 C410 200, 465 205, 525 185 C585 165, 665 175, 725 220 C770 255, 835 285, 895 255 " +
-        "M65 300 C120 330, 190 342, 252 318 C322 292, 390 292, 455 322 C525 354, 590 354, 657 323 C720 292, 790 283, 875 315 " +
-        "M165 360 C200 390, 245 405, 300 389 M600 370 C652 400, 715 402, 768 372"
-    );
-    worldOutline.setAttribute("class", "sketch-outline");
-    worldOutline.setAttribute("fill", "none");
-    worldOutline.setAttribute("stroke", outlineColor);
-    worldOutline.setAttribute("stroke-width", "3");
-    worldOutline.setAttribute("stroke-linecap", "round");
-    worldOutline.setAttribute("stroke-linejoin", "round");
-    svg.appendChild(worldOutline);
+        locations.forEach((location) => {
+            const marker = L.circleMarker([location.lat, location.lng], {
+                radius: 7,
+                color: markerColor,
+                fillColor: markerColor,
+                fillOpacity: 0.9,
+                weight: 2,
+            }).addTo(map);
 
-    const locations = normalizeLocations(payload.locations, width, height, padX, padY);
-    const locationById = new Map(locations.map((location) => [location.id, location]));
-
-    if (Array.isArray(payload.connections)) {
-        payload.connections.forEach((connection) => {
-            if (!isObject(connection)) {
-                return;
-            }
-
-            const fromId = asText(connection.from_id);
-            const toId = asText(connection.to_id);
-            if (!fromId || !toId) {
-                return;
-            }
-
-            const fromLocation = locationById.get(fromId);
-            const toLocation = locationById.get(toId);
-            if (!fromLocation || !toLocation) {
-                return;
-            }
-
-            const connector = document.createElementNS(svgNs, "line");
-            connector.setAttribute("x1", String(fromLocation.x));
-            connector.setAttribute("y1", String(fromLocation.y));
-            connector.setAttribute("x2", String(toLocation.x));
-            connector.setAttribute("y2", String(toLocation.y));
-            connector.setAttribute("class", "map-connector");
-            connector.setAttribute("stroke", outlineColor);
-            connector.setAttribute("stroke-width", "2");
-            connector.setAttribute("stroke-linecap", "round");
-            if (dotted) {
-                connector.setAttribute("stroke-dasharray", "3 7");
-            }
-            svg.appendChild(connector);
+            marker.bindPopup(
+                `<strong>${escapeHtml(location.label || location.name)}</strong><br>` +
+                `${escapeHtml(location.name)}, ${escapeHtml(location.country)}` +
+                (location.note ? `<br>${escapeHtml(location.note)}` : "")
+            );
+            bounds.push([location.lat, location.lng]);
         });
-    }
 
-    locations.forEach((location) => {
-        const marker = document.createElementNS(svgNs, "circle");
-        marker.setAttribute("cx", String(location.x));
-        marker.setAttribute("cy", String(location.y));
-        marker.setAttribute("r", "5");
-        marker.setAttribute("class", "map-marker");
-        marker.setAttribute("fill", markerColor);
-        marker.setAttribute("stroke", "#FFFFFF");
-        marker.setAttribute("stroke-width", "1.5");
-
-        const title = document.createElementNS(svgNs, "title");
-        title.textContent = `${location.name}, ${location.country} - ${location.note}`;
-        marker.appendChild(title);
-        svg.appendChild(marker);
-
-        const label = document.createElementNS(svgNs, "text");
-        label.setAttribute("x", String(location.x + 8));
-        label.setAttribute("y", String(location.y - 8));
-        label.setAttribute("class", "map-label");
-        label.textContent = location.label || location.name;
-        svg.appendChild(label);
-
-        if (location.note) {
-            const note = document.createElementNS(svgNs, "text");
-            note.setAttribute("x", String(location.x + 8));
-            note.setAttribute("y", String(location.y + 9));
-            note.setAttribute("class", "map-note");
-            note.textContent = location.note;
-            svg.appendChild(note);
+        for (let index = 0; index < locations.length - 1; index += 1) {
+            const from = locations[index];
+            const to = locations[index + 1];
+            L.polyline(
+                [
+                    [from.lat, from.lng],
+                    [to.lat, to.lng],
+                ],
+                {
+                    color: lineColor,
+                    weight: 1,
+                    opacity: 0.9,
+                    dashArray: "2 6",
+                }
+            ).addTo(map);
         }
-    });
 
-    if (!locations.length) {
-        const empty = document.createElementNS(svgNs, "text");
-        empty.setAttribute("x", "40");
-        empty.setAttribute("y", "70");
-        empty.setAttribute("class", "map-note");
-        empty.textContent = "No valid map locations available.";
-        svg.appendChild(empty);
+        if (bounds.length) {
+            map.fitBounds(bounds, { padding: [30, 30] });
+        }
     }
 
-    root.replaceChildren(svg);
+    async function renderOpenApiFallbackPlaces() {
+        const fallbackQueries = ["Accra", "London", "New York", "Tokyo", "Cape Town"];
+        const fetched = [];
 
-    function normalizeLocations(rawLocations, canvasWidth, canvasHeight, xPad, yPad) {
+        for (const query of fallbackQueries) {
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${encodeURIComponent(query)}`
+            );
+            if (!response.ok) {
+                continue;
+            }
+            const results = await response.json();
+            if (!Array.isArray(results) || !results.length) {
+                continue;
+            }
+            const row = results[0];
+            const lat = Number(row.lat);
+            const lng = Number(row.lon);
+            if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+                continue;
+            }
+            fetched.push({
+                id: query.toLowerCase().replace(/\s+/g, "-"),
+                name: query,
+                country: row.display_name || query,
+                label: query,
+                note: "OpenStreetMap API preview place",
+                lat,
+                lng,
+            });
+        }
+
+        if (!fetched.length) {
+            return;
+        }
+        renderLocations(fetched);
+    }
+
+    function normalizeLocations(rawLocations) {
         if (!Array.isArray(rawLocations)) {
             return [];
         }
-
         return rawLocations
             .map((entry) => {
                 if (!isObject(entry)) {
                     return null;
                 }
-
                 const id = asText(entry.id);
                 const name = asText(entry.name);
                 const country = asText(entry.country);
                 const lat = asNumber(entry.lat);
                 const lng = asNumber(entry.lng);
-
                 if (!id || !name || !country || lat === null || lng === null) {
                     return null;
                 }
-
-                const x = xPad + ((lng + 180) / 360) * (canvasWidth - xPad * 2);
-                const y = yPad + ((90 - lat) / 180) * (canvasHeight - yPad * 2);
-
                 return {
                     id,
                     name,
                     country,
                     label: asText(entry.label) || name,
                     note: asText(entry.note),
-                    x: clamp(x, xPad, canvasWidth - xPad),
-                    y: clamp(y, yPad, canvasHeight - yPad),
+                    lat,
+                    lng,
                 };
             })
             .filter(Boolean);
@@ -190,7 +159,9 @@
         return value !== null && typeof value === "object" && !Array.isArray(value);
     }
 
-    function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
+    function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
     }
 })();

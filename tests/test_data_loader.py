@@ -79,6 +79,18 @@ class TestDataLoader(unittest.TestCase):
         )
         self.assert_nav_item_contract(nav_items)
 
+    def test_save_json_file_writes_payload(self):
+        payload = {"heading": "About Yourself", "items": [1, 2, 3]}
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = os.path.join(temp_dir, "saved.json")
+            self.assertTrue(data_loader.save_json_file(path, payload))
+
+            with open(path, "r", encoding="utf-8") as handle:
+                written = json.load(handle)
+
+        self.assertEqual(written, payload)
+
 
 if __name__ == "__main__":
     unittest.main()

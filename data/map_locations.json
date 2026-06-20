@@ -7,54 +7,32 @@
   },
   "locations": [
     {
-      "id": "accra",
+      "id": "accra-ghana",
       "name": "Accra",
       "country": "Ghana",
-      "lat": 5.6037,
-      "lng": -0.187,
-      "label": "Home Base",
-      "note": "Raised in Accra and built early coding foundations."
+      "lat": 5.5571096,
+      "lng": -0.2012376,
+      "label": "Home",
+      "note": "My hometown"
     },
     {
-      "id": "kumasi",
-      "name": "Kumasi",
-      "country": "Ghana",
-      "lat": 6.6885,
-      "lng": -1.6244,
-      "label": "Family Ties",
-      "note": "Frequent visits and community projects."
+      "id": "grambling-louisiana",
+      "name": "Grambling",
+      "country": "Louisiana",
+      "lat": 32.5276503,
+      "lng": -92.7140403,
+      "label": "United States",
+      "note": "college"
     },
     {
-      "id": "london",
-      "name": "London",
-      "country": "United Kingdom",
-      "lat": 51.5072,
-      "lng": -0.1276,
-      "label": "Global Exposure",
-      "note": "Technology workshops and networking events."
-    },
-    {
-      "id": "new-york",
-      "name": "New York",
-      "country": "United States",
-      "lat": 40.7128,
-      "lng": -74.006,
-      "label": "Career Growth",
-      "note": "Professional conferences and mentorship programs."
+      "id": "san-jose-california",
+      "name": "San Jose",
+      "country": "California",
+      "lat": 37.3361663,
+      "lng": -121.890591,
+      "label": "United States",
+      "note": "Work"
     }
   ],
-  "connections": [
-    {
-      "from_id": "accra",
-      "to_id": "kumasi"
-    },
-    {
-      "from_id": "accra",
-      "to_id": "london"
-    },
-    {
-      "from_id": "london",
-      "to_id": "new-york"
-    }
-  ]
+  "connections": []
 }

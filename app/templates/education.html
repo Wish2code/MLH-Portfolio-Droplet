@@ -15,15 +15,14 @@
         {% for item in education.current_education %}
         <article class="application-card">
             <h3>{{ item.school_name }}</h3>
-            <p><strong>Program:</strong> {{ item.program_or_level }}</p>
+            <p><strong>Program:</strong> {{ item.program }}</p>
             <p><strong>Location:</strong> {{ item.location }}</p>
-            <p><strong>Status:</strong> {{ item.status }}</p>
             <p><strong>Start Date:</strong> {{ item.start_date }}</p>
             <p><strong>Graduation Date:</strong> {{ item.grad_date }}</p>
             <p><strong>GPA:</strong> {{ item.gpa }}</p>
             <p><strong>Classification:</strong> {{ item.classification }}</p>
-            <p><strong>Coursework:</strong> {{ (item.coursework or []) | join(", ") or "Not provided" }}</p>
-            <p><strong>Extracurriculars:</strong> {{ (item.extracurriculars or []) | join(", ") or "Not provided" }}</p>
+            <p><strong>Relevant Coursework:</strong> {{ (item.coursework or []) | join(", ") }}</p>
+            <p><strong>Extracurriculars:</strong> {{ (item.extracurriculars or []) | join(", ") }}</p>
             {% if item.highlights %}
             <ul class="content-list">
                 {% for highlight in item.highlights %}
@@ -44,15 +43,14 @@
         {% for item in education.past_education %}
         <article class="application-card">
             <h3>{{ item.school_name }}</h3>
-            <p><strong>Program:</strong> {{ item.program_or_level }}</p>
+            <p><strong>Program:</strong> {{ item.program }}</p>
             <p><strong>Location:</strong> {{ item.location }}</p>
-            <p><strong>Status:</strong> {{ item.status }}</p>
             <p><strong>Start Date:</strong> {{ item.start_date }}</p>
             <p><strong>Graduation Date:</strong> {{ item.grad_date }}</p>
             <p><strong>GPA:</strong> {{ item.gpa }}</p>
             <p><strong>Classification:</strong> {{ item.classification }}</p>
-            <p><strong>Coursework:</strong> {{ (item.coursework or []) | join(", ") or "Not provided" }}</p>
-            <p><strong>Extracurriculars:</strong> {{ (item.extracurriculars or []) | join(", ") or "Not provided" }}</p>
+            <p><strong>Relevant Coursework:</strong> {{ (item.coursework or []) | join(", ") }}</p>
+            <p><strong>Extracurriculars:</strong> {{ (item.extracurriculars or []) | join(", ") }}</p>
             {% if item.highlights %}
             <ul class="content-list">
                 {% for highlight in item.highlights %}
@@ -74,14 +72,7 @@
         <article class="application-card">
             <h3>{{ role.title }}</h3>
             <p><strong>Organization:</strong> {{ role.organization }}</p>
-            <p><strong>Period:</strong> {{ role.period }}</p>
-            {% if role.details %}
-            <ul class="content-list">
-                {% for detail in role.details %}
-                <li>{{ detail }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <p><strong>Details:</strong> {{ role.details }}</p>
         </article>
         {% endfor %}
         {% else %}
@@ -96,14 +87,7 @@
         <article class="application-card">
             <h3>{{ job.title }}</h3>
             <p><strong>Organization:</strong> {{ job.organization }}</p>
-            <p><strong>Period:</strong> {{ job.period }}</p>
-            {% if job.details %}
-            <ul class="content-list">
-                {% for detail in job.details %}
-                <li>{{ detail }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <p><strong>Details:</strong> {{ job.details }}</p>
         </article>
         {% endfor %}
         {% else %}

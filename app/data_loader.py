@@ -26,8 +26,8 @@ def load_nav_items():
             {"label": "About", "route": "/about", "enabled": True},
             {"label": "Work", "route": "/work", "enabled": True},
             {"label": "Education", "route": "/education", "enabled": True},
-            {"label": "Hobbies", "route": "/hobbies", "enabled": True},
             {"label": "Map", "route": "/map", "enabled": True},
+            {"label": "Admin", "route": "/admin", "enabled": True},
         ]
     }
 
@@ -59,3 +59,22 @@ def load_nav_items():
         return enabled_items
 
     return [item for item in fallback_payload["items"] if item.get("enabled", True)]
+
+
+def save_json_file(path_or_name, payload):
+    if os.path.isabs(path_or_name):
+        file_path = path_or_name
+    else:
+        file_path = os.path.join(DATA_DIR, path_or_name)
+
+    try:
+        parent_dir = os.path.dirname(file_path)
+        if parent_dir:
+            os.makedirs(parent_dir, exist_ok=True)
+
+        with open(file_path, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, ensure_ascii=True)
+            handle.write("\n")
+        return True
+    except OSError:
+        return False
