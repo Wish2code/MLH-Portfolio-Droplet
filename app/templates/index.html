@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="page-section home-page">
+    <section class="hero" aria-label="Portfolio home">
+        <div class="hero-card">
+            <h1 class="hero-title">{{ title }}</h1>
+            <p class="section-intro">
+                Welcome to your portfolio. Use the menu to open dedicated pages for About, Work, Education, Hobbies, and Map.
+            </p>
+            <p class="section-intro">
+                To update your content, open <a href="{{ url_for('admin') }}">Admin Editor</a>.
+            </p>
+        </div>
+    </section>
+</section>
+{% endblock %}

@@ -1,61 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="MLH Fellowship Portfolio">
-    <meta property="og:url" content="{{ url }}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
-
-    <link lang="sass" rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}" type="image/svg+xml">
-    <title>{{ title }}</title>
+    <meta property="og:title" content="Personal Portfolio">
+    <meta property="og:description" content="My Personal Portfolio">
+    <meta property="og:url" content="{{ url or request.url }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <title>{% block title %}Portfolio{% endblock %}</title>
 </head>
-
 <body>
     <header class="nav-bar">
         <div class="nav-content">
-            <a href="/">
+            <a href="/" class="logo-touch-target">
                 <div class="nav-logo">
-                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="MLH logo">
+                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Site logo">
                 </div>
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li>
-                        <a href="/" {% if request.path == "/" %}class="active"{% endif %}>Home</a>
-                    </li>
-                    <li class="nav-dropdown">
-                        <details>
-                            <summary class="nav-dropdown__toggle">Fellows</summary>
-                            <ul class="nav-dropdown__menu">
-                            {% for fellow in fellows %}
-                            <li>
-                                {% if fellow.available %}
-                                <a href="{{ fellow.url }}" {% if request.path == fellow.url %}class="active"{% endif %}>
-                                    {{ fellow.name }}
-                                </a>
-                                {% else %}
-                                <span class="nav-dropdown__disabled">{{ fellow.name }}</span>
-                                {% endif %}
-                            </li>
-                            {% endfor %}
-                            </ul>
-                        </details>
-                    </li>
-                </ul>
+            <nav class="nav-menu" aria-label="Main navigation">
+                {% for item in nav_items %}
+                <a
+                    href="{{ item.route }}"
+                    class="nav-link{% if request.path == item.route %} active{% endif %}"
+                >
+                    {{ item.label }}
+                </a>
+                {% endfor %}
             </nav>
         </div>
     </header>
 
-    {% block content %}{% endblock %}
+    <main class="page-content">
+        {% block content %}{% endblock %}
+    </main>
 </body>
-
 </html>

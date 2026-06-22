@@ -1,0 +1,38 @@
+{
+  "map_style": {
+    "outline_color": "#66BB6A",
+    "background_color": "#FFFFFF",
+    "marker_color": "#E02424",
+    "connector_style": "dotted"
+  },
+  "locations": [
+    {
+      "id": "accra-ghana",
+      "name": "Accra",
+      "country": "Ghana",
+      "lat": 5.5571096,
+      "lng": -0.2012376,
+      "label": "Home",
+      "note": "My hometown"
+    },
+    {
+      "id": "grambling-louisiana",
+      "name": "Grambling",
+      "country": "Louisiana",
+      "lat": 32.5276503,
+      "lng": -92.7140403,
+      "label": "United States",
+      "note": "college"
+    },
+    {
+      "id": "san-jose-california",
+      "name": "San Jose",
+      "country": "California",
+      "lat": 37.3361663,
+      "lng": -121.890591,
+      "label": "United States",
+      "note": "Work"
+    }
+  ],
+  "connections": []
+}
