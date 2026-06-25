@@ -1,5 +1,30 @@
 {
   "heading": "Hobbies",
-  "intro": "",
-  "items": []
+  "intro": "Outside of engineering work, I enjoy creative activities and exploring new places.",
+  "items": [
+    {
+      "name": "Music and Concerts",
+      "description": "I enjoy listening to new artists and attending concerts whenever I can.",
+      "details": [
+        "Keeps me inspired and recharged",
+        "I like discovering new genres and live performances"
+      ]
+    },
+    {
+      "name": "Computer Projects",
+      "description": "I spend time coding, experimenting with tools, and building useful side projects.",
+      "details": [
+        "Includes web development, automation, and hands-on PC tinkering",
+        "A favorite part is shipping small ideas quickly"
+      ]
+    },
+    {
+      "name": "Food and Travel",
+      "description": "I love trying new restaurants, cooking, and exploring places with great culture.",
+      "details": [
+        "I enjoy visiting cities with unique food scenes",
+        "Travel experiences often inspire my map and portfolio updates"
+      ]
+    }
+  ]
 }

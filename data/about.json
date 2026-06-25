@@ -1,6 +1,14 @@
 {
-  "heading": "",
-  "intro": "",
-  "highlights": [],
-  "facts": []
+  "heading": "About Me",
+  "intro": "I am a production engineering enthusiast who enjoys building reliable web applications, learning from open-source communities, and creating helpful tools for everyday users.",
+  "highlights": [
+    "Production Engineering Fellow in the MLH Fellowship pod",
+    "Focuses on dependable backend systems and user-friendly web experiences",
+    "Enjoys collaboration, continuous learning, and practical problem solving"
+  ],
+  "facts": [
+    {"label": "Current Focus", "value": "Production Engineering and Flask development"},
+    {"label": "Interests", "value": "Reliability, automation, and developer experience"},
+    {"label": "Goal", "value": "Build useful software that is easy to maintain"}
+  ]
 }

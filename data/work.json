@@ -1,5 +1,36 @@
 {
   "heading": "Work Experiences",
-  "summary": "",
-  "roles": []
+  "summary": "A mix of fellowship collaboration, internships, and student-facing engineering roles.",
+  "roles": [
+    {
+      "title": "Production Engineering Fellow",
+      "organization": "MLH Fellowship",
+      "location": "Remote",
+      "period": "Summer 2026",
+      "highlights": [
+        "Collaborated with a pod to build and improve open-source software",
+        "Practiced version control, code reviews, and incident-aware engineering habits"
+      ]
+    },
+    {
+      "title": "Computer Vision Research Intern",
+      "organization": "University of North Texas",
+      "location": "Texas, USA",
+      "period": "January 2026 - May 2026",
+      "highlights": [
+        "Worked on computer vision road debris detection research",
+        "Helped evaluate model behavior and improve experiment reliability"
+      ]
+    },
+    {
+      "title": "Software Engineering Intern",
+      "organization": "Tech Startup",
+      "location": "Remote",
+      "period": "2025",
+      "highlights": [
+        "Built customer-facing Flask features",
+        "Improved delivery speed with iterative testing and cleanup"
+      ]
+    }
+  ]
 }

@@ -1,20 +1,66 @@
 {
-  "profile_summary": "Education",
+  "profile_summary": "BSc Computer Science - University of Technology",
   "current_education": [
     {
-      "school_name": "",
-      "location": "",
-      "program": "",
-      "classification": "",
-      "gpa": "",
-      "start_date": "",
-      "grad_date": "",
-      "coursework": [],
-      "extracurriculars": [],
-      "highlights": []
+      "school_name": "University of Technology",
+      "location": "City Campus",
+      "program": "BSc in Computer Science",
+      "classification": "Upper Division",
+      "gpa": "3.8/4.0",
+      "start_date": "2022",
+      "grad_date": "Present",
+      "coursework": [
+        "Data Structures and Algorithms",
+        "Operating Systems",
+        "Database Systems",
+        "Software Engineering"
+      ],
+      "extracurriculars": [
+        "Engineering Society",
+        "Open Source Student Group"
+      ],
+      "highlights": [
+        "Built portfolio projects with Flask and Jinja",
+        "Contributed to team software projects through fellowship collaboration"
+      ]
     }
   ],
-  "past_education": [],
-  "campus_positions": [],
-  "jobs": []
+  "past_education": [
+    {
+      "school_name": "City STEM College",
+      "location": "City Center",
+      "program": "Pre-University Science",
+      "classification": "Completed",
+      "gpa": "A Average",
+      "start_date": "2020",
+      "grad_date": "2022",
+      "coursework": [
+        "Mathematics",
+        "Physics",
+        "General Science"
+      ],
+      "extracurriculars": [
+        "Science Club",
+        "Peer Mentoring"
+      ],
+      "highlights": [
+        "Graduated with strong STEM foundation",
+        "Developed early interest in software and systems"
+      ]
+    }
+  ],
+  "campus_positions": [
+    {
+      "title": "Student Director",
+      "organization": "NSM Career Center",
+      "details": "Connected students with industry leaders through career events and mentorship."
+    }
+  ],
+  "jobs": [
+    {
+      "title": "Coding Instructor",
+      "organization": "Code Ninjas",
+      "details": "Taught programming fundamentals through game development and project-based learning."
+    }
+  ]
 }

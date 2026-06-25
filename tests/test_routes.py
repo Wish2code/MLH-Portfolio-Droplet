@@ -22,7 +22,7 @@ class TestRoutes(unittest.TestCase):
         body = response.get_data(as_text=True)
 
         self.assertEqual(response.status_code, 200)
-        for route in ["/", "/about", "/work", "/education", "/map", "/admin"]:
+        for route in ["/", "/about", "/work", "/education", "/hobbies", "/map", "/admin"]:
             with self.subTest(route=route):
                 self.assertIn(f'href="{route}"', body)
 
@@ -31,7 +31,7 @@ class TestRoutes(unittest.TestCase):
         body = response.get_data(as_text=True)
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn("<h1>About</h1>", body)
+        self.assertIn("<h1>About Me</h1>", body)
 
     def test_work_page_renders_json_role_content(self):
         response = self.client.get("/work")
@@ -39,7 +39,7 @@ class TestRoutes(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn("Work Experiences", body)
-        self.assertIn("No work entries available yet.", body)
+        self.assertIn("Production Engineering Fellow", body)
 
     def test_education_page_renders_application_fields(self):
         response = self.client.get("/education")
@@ -57,7 +57,7 @@ class TestRoutes(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn("Hobbies", body)
-        self.assertIn("No hobbies listed yet.", body)
+        self.assertIn("Music and Concerts", body)
 
     def test_map_page_includes_renderer_script_and_marker_color(self):
         response = self.client.get("/map")

@@ -4,6 +4,7 @@
     {"label": "About", "route": "/about", "enabled": true},
     {"label": "Work", "route": "/work", "enabled": true},
     {"label": "Education", "route": "/education", "enabled": true},
+    {"label": "Hobbies", "route": "/hobbies", "enabled": true},
     {"label": "Map", "route": "/map", "enabled": true},
     {"label": "Admin", "route": "/admin", "enabled": true}
   ]
