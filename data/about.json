@@ -1,6 +1,52 @@
 {
-  "heading": "",
-  "intro": "",
-  "highlights": [],
-  "facts": []
+  "heading": "About",
+  "intro": "I am a Computer Science student with a strong interest in machine learning, distributed systems, and software engineering. My experience spans research, production engineering, and technical fellowship programs, where I have worked on applying machine learning to real-world scientific problems while strengthening my software development and systems skills.",
+  "paragraphs": [
+    "I am a Computer Science student with a strong interest in machine learning, distributed systems, and software engineering. I am from Zimbabwe.",
+    "My experience spans research, production engineering, and technical fellowship programs. At Fermilab I applied state-of-the-art generative machine learning to high-energy physics problems within the CMS experiment at CERN, and through the Meta Production Engineering Fellowship I learned how large-scale production systems are designed, deployed, monitored, and maintained.",
+    "I care about software that is precise, reliable, and fast \u2014 whether that is a model calibrating collision data from the Large Hadron Collider or infrastructure automation that keeps systems running."
+  ],
+  "highlights": [
+    "Applied generative machine learning to CMS experiment calibrations at Fermilab",
+    "Trained in large-scale production engineering with Meta engineers through MLH",
+    "Selected for the Google Basta and Uber Career Prep fellowships",
+    "Hands-on with PyTorch, Linux, containers, and infrastructure automation"
+  ],
+  "facts": [
+    { "label": "From", "value": "Zimbabwe" },
+    { "label": "Studying", "value": "Computer Science, Grambling State University" },
+    { "label": "Focus", "value": "Machine learning, distributed systems, software engineering" },
+    { "label": "Recent", "value": "Generative ML research at Fermilab (CMS experiment, CERN)" }
+  ],
+  "interests_heading": "Off the Clock",
+  "interests_intro": "Away from the keyboard, I follow anything measured in lap times, miles, and match minutes.",
+  "interests": [
+    {
+      "name": "Formula 1",
+      "description": "Race strategy, telemetry, and the engineering behind every tenth of a second \u2014 the same obsession with performance I bring to software.",
+      "image": "img/interest-f1.webp",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "name": "Biking",
+      "description": "Trail riding whenever I can get out \u2014 the best systems thinking happens somewhere in the woods.",
+      "image": "img/interest-biking.webp",
+      "width": 750,
+      "height": 500
+    },
+    {
+      "name": "Football",
+      "description": "Always counting down to the next World Cup.",
+      "image": "img/interest-football.webp",
+      "width": 560,
+      "height": 345
+    },
+    {
+      "name": "Travelling",
+      "description": "From Zimbabwe to Louisiana and beyond \u2014 see the places that shaped the journey.",
+      "link": "/map",
+      "link_label": "View the map"
+    }
+  ]
 }

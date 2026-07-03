@@ -1,36 +1,45 @@
 {
   "map_style": {
-    "outline_color": "#66BB6A",
-    "background_color": "#FFFFFF",
-    "marker_color": "#E02424",
+    "outline_color": "#2a2d34",
+    "background_color": "#0b0c10",
+    "marker_color": "#E10600",
     "connector_style": "dotted"
   },
   "locations": [
+    {
+      "id": "harare-zimbabwe",
+      "name": "Harare",
+      "country": "Zimbabwe",
+      "lat": -17.8292,
+      "lng": 31.0522,
+      "label": "Home",
+      "note": "Where I am from"
+    },
     {
       "id": "accra-ghana",
       "name": "Accra",
       "country": "Ghana",
       "lat": 5.5571096,
       "lng": -0.2012376,
-      "label": "Home",
-      "note": "My hometown"
+      "label": "Accra",
+      "note": "Visited"
     },
     {
       "id": "grambling-louisiana",
       "name": "Grambling",
-      "country": "Louisiana",
+      "country": "United States",
       "lat": 32.5276503,
       "lng": -92.7140403,
-      "label": "United States",
-      "note": "college"
+      "label": "College",
+      "note": "Grambling State University"
     },
     {
       "id": "san-jose-california",
       "name": "San Jose",
-      "country": "California",
+      "country": "United States",
       "lat": 37.3361663,
       "lng": -121.890591,
-      "label": "United States",
+      "label": "Work",
       "note": "Work"
     }
   ],
