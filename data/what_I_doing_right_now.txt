@@ -1,0 +1,39 @@
+About Me
+
+I am a Computer Science student with a strong interest in machine learning, distributed systems, and software engineering. My experience spans research, production engineering, and technical fellowship programs, where I have worked on applying machine learning to real-world scientific problems while strengthening my software development and systems skills. I am from Zimbabwe.
+
+Fellowships
+Google Basta Fellowship
+Participated in an intensive technical development program focused on interview preparation, software engineering best practices, and career readiness.
+Collaborated with peers on technical challenges while strengthening data structures, algorithms, and problem-solving skills.
+Uber Career Prep Fellowship
+Completed advanced technical interview preparation focused on algorithms, system design fundamentals, and software engineering practices.
+Solved complex coding problems and received mentorship from experienced software engineers.
+Meta Production Engineering Fellowship (Major League Hacking)
+Worked closely with Meta Production Engineers to learn how large-scale production systems are designed, deployed, monitored, and maintained.
+Gained hands-on experience with Linux, networking fundamentals, shell scripting, Git, Python automation, containers, and production engineering workflows.
+Developed projects that emphasized infrastructure automation, reliability, and operational excellence.
+Research Experience
+Fermilab Research Intern
+
+Project: Leveraging Generative Machine Learning for General-Purpose Calibrations in the CMS Experiment
+
+Worked with Dr. Spandan Mondal on research applying state-of-the-art generative machine learning techniques to high-energy physics problems within the CMS experiment at CERN.
+
+The research focused on developing and evaluating modern generative models—including diffusion models, Conditional Flow Matching, normalizing flows, CycleGANs, and optimal transport methods—to improve the calibration of simulated Large Hadron Collider collision data using real detector observations.
+
+Throughout the project, I worked extensively with:
+
+PyTorch
+Deep learning
+Generative AI models
+Domain adaptation
+Optimal transport
+Workflow automation
+Scientific computing
+Large-scale experimental datasets
+
+This experience strengthened my understanding of machine learning research, experimentation, model evaluation, and applying AI techniques to complex scientific challenges.
+
+My interests:
+Formula 1, Travelling, Biking

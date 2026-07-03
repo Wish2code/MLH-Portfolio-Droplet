@@ -5,3 +5,4 @@ __pycache__
 python3-virtualenv
 flask.sqlite
 .DS_Store
+/home/ngaatendwe/MLH-Portfolio-Droplet/data/what_I_doing_right_now.txt
