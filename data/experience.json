@@ -1,0 +1,61 @@
+{
+  "heading": "Experience",
+  "summary": "Research, production engineering, and competitive technical fellowships \u2014 each one focused on building precise, reliable, high-performance software.",
+  "roles": [
+    {
+      "kind": "Research",
+      "title": "Research Intern",
+      "organization": "Fermi National Accelerator Laboratory (Fermilab)",
+      "location": "",
+      "period": "",
+      "summary": "Leveraging generative machine learning for general-purpose calibrations in the CMS experiment at CERN, working with Dr. Spandan Mondal.",
+      "highlights": [
+        "Applied state-of-the-art generative machine learning techniques to high-energy physics problems within the CMS experiment at CERN.",
+        "Developed and evaluated modern generative models \u2014 diffusion models, Conditional Flow Matching, normalizing flows, CycleGANs, and optimal transport methods \u2014 to improve the calibration of simulated Large Hadron Collider collision data using real detector observations.",
+        "Worked extensively with PyTorch, deep learning, domain adaptation, workflow automation, scientific computing, and large-scale experimental datasets.",
+        "Strengthened skills in ML research methodology, experimentation, and model evaluation on complex scientific challenges."
+      ],
+      "tags": ["PyTorch", "Diffusion Models", "Flow Matching", "Normalizing Flows", "Optimal Transport", "Scientific Computing"]
+    },
+    {
+      "kind": "Fellowship",
+      "title": "Production Engineering Fellow",
+      "organization": "Meta \u00d7 Major League Hacking",
+      "location": "",
+      "period": "",
+      "summary": "Trained with Meta Production Engineers on how large-scale production systems are designed, deployed, monitored, and maintained.",
+      "highlights": [
+        "Worked closely with Meta Production Engineers to learn how large-scale production systems are designed, deployed, monitored, and maintained.",
+        "Gained hands-on experience with Linux, networking fundamentals, shell scripting, Git, Python automation, containers, and production engineering workflows.",
+        "Developed projects emphasizing infrastructure automation, reliability, and operational excellence."
+      ],
+      "tags": ["Linux", "Networking", "Shell Scripting", "Python", "Containers", "Git"]
+    },
+    {
+      "kind": "Fellowship",
+      "title": "Career Prep Fellow",
+      "organization": "Uber",
+      "location": "",
+      "period": "",
+      "summary": "Advanced technical interview preparation focused on algorithms, system design fundamentals, and software engineering practices.",
+      "highlights": [
+        "Completed advanced technical interview preparation focused on algorithms, system design fundamentals, and software engineering practices.",
+        "Solved complex coding problems and received mentorship from experienced software engineers."
+      ],
+      "tags": ["Algorithms", "System Design", "Mentorship"]
+    },
+    {
+      "kind": "Fellowship",
+      "title": "Basta Fellow",
+      "organization": "Google",
+      "location": "",
+      "period": "",
+      "summary": "Intensive technical development program covering interview preparation, engineering best practices, and career readiness.",
+      "highlights": [
+        "Participated in an intensive technical development program focused on interview preparation, software engineering best practices, and career readiness.",
+        "Collaborated with peers on technical challenges while strengthening data structures, algorithms, and problem-solving skills."
+      ],
+      "tags": ["Data Structures", "Algorithms", "Problem Solving"]
+    }
+  ]
+}

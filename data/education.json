@@ -1,17 +1,20 @@
 {
-  "profile_summary": "Education",
+  "profile_summary": "Grambling State University - B.S. Computer Science - Grambling, Louisiana",
   "current_education": [
     {
-      "school_name": "",
-      "location": "",
-      "program": "",
+      "school_name": "Grambling State University",
+      "location": "Grambling, Louisiana",
+      "program": "B.S. Computer Science",
       "classification": "",
       "gpa": "",
       "start_date": "",
       "grad_date": "",
       "coursework": [],
       "extracurriculars": [],
-      "highlights": []
+      "highlights": [
+        "Selected for the Google Basta, Uber Career Prep, and Meta Production Engineering (MLH) fellowships while studying",
+        "Machine learning research intern at Fermi National Accelerator Laboratory"
+      ]
     }
   ],
   "past_education": [],

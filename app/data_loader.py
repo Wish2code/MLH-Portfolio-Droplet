@@ -22,12 +22,12 @@ def load_json_file(path_or_name, fallback):
 def load_nav_items():
     fallback_payload = {
         "items": [
-            {"label": "Home", "route": "/", "enabled": True},
-            {"label": "About", "route": "/about", "enabled": True},
-            {"label": "Work", "route": "/work", "enabled": True},
-            {"label": "Education", "route": "/education", "enabled": True},
+            {"label": "About", "route": "/#about", "enabled": True},
+            {"label": "Experience", "route": "/#experience", "enabled": True},
+            {"label": "Skills", "route": "/#skills", "enabled": True},
+            {"label": "Education", "route": "/#education", "enabled": True},
             {"label": "Map", "route": "/map", "enabled": True},
-            {"label": "Admin", "route": "/admin", "enabled": True},
+            {"label": "Contact", "route": "/#contact", "enabled": True},
         ]
     }
 

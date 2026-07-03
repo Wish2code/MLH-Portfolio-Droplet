@@ -1,50 +1,27 @@
-# Production Engineering - Week 1 - Portfolio Site
+# Ngaatendwe Wish Dumbarimwe — Portfolio
 
-Welcome to the MLH Fellowship! During Week 1, you'll be using Flask to build a portfolio site. This site will be the foundation for activities we do in future weeks so spend time this week making it your own and reflect your personality!
+A personal portfolio built with Flask and Jinja, redesigned with a modern, Formula One–inspired aesthetic: dark carbon surfaces, precise typography, a racing-red accent, and data-driven layouts. All content is loaded from JSON files in `data/`, so the site can be updated without touching templates.
 
-## Tasks
+## Highlights
 
-Once you've got your portfolio downloaded and running using the instructions below, you should attempt to complete the following tasks.
-
-For each of these tasks, you should create an [Issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) and work on them in a new [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches). When the task has been completed, you should open a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) and get another fellow in your pod to give you feedback before merging it in.
-
-*Note: Make sure to include a link to the Issue you're progressing on inside of your Pull Request so your reviewer knows what you're progressing on!*
-
-### GitHub Tasks
-- [x] Create Issues for each task below
-- [x] Progress on each task in a new branch
-- [x] Open a Pull Request when a task is finished to get feedback
-
-### Portfolio Tasks
-- [x] Add a photo of yourself to the website
-- [x] Add an "About youself" section to the website.
-- [x] Add your previous work experiences
-- [x] Add your hobbies (including images)
-- [x] Add your current/previous education
-- [x] Add a map of all the cool locations/countries you visited
-
-### Flask Tasks
-- [x] Get your Flask app running locally on your machine using the instructions below.
-- [x] Add a template for adding multiple work experiences/education/hobbies using [Jinja](https://jinja.palletsprojects.com/en/3.0.x/api/#basics)
-- [x] Create a new page to display hobbies.
-- [x] Add a menu bar that dynamically displays other pages in the app
-
-
-## Getting Started
-
-You need to do all your progress here.
+- **Single-page layout** — About, Experience, Skills, Education, Interests, and Contact live on one fast page with anchor navigation and scroll-spy highlighting.
+- **Performance-first** — one small CSS file, ~2 KB of vanilla JavaScript, GPU-friendly transform/opacity animations, lazy-loaded WebP images, and system monospace fonts for accents.
+- **Accessible** — semantic HTML, skip link, keyboard-focus styles, `prefers-reduced-motion` support, and high-contrast text on dark surfaces.
+- **Interactive map** (`/map`) — a dark-themed Leaflet map of places I have lived, studied, and worked.
+- **Admin editor** (`/admin`) — plain-text forms that save Education and Map data back to JSON.
 
 ## Installation
 
-Make sure you have python3 and pip installed
+Make sure you have python3 and pip installed.
 
-Create and activate virtual environment using virtualenv
+Create and activate a virtual environment:
+
 ```bash
-$ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
+python -m venv python3-virtualenv
+source python3-virtualenv/bin/activate
 ```
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies!
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -52,40 +29,37 @@ pip install -r requirements.txt
 
 ## Usage
 
-Create a .env file using the example.env template (make a copy using the variables inside of the template)
+Create a `.env` file using the `example.env` template, then start the Flask development server:
 
-Start flask development server
 ```bash
-$ export FLASK_ENV=development
-$ flask run
+export FLASK_ENV=development
+flask run
 ```
 
-You should get a response like this in the terminal:
+The site is served at `http://localhost:5000`.
+
+## Testing
+
+```bash
+python -m unittest discover -s tests
 ```
-❯ flask run
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-```
 
-You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000` in the browser! 
-
-*Note: The portfolio site will only work on your local machine while you have it running inside of your terminal. We'll go through how to host it in the cloud in the next few weeks!* 
-
-## Data files and map styling
+## Content and data files
 
 Page content and navigation are loaded from JSON files in `data/`:
-- `about.json`
-- `work.json`
-- `education.json`
-- `hobbies.json`
-- `map_locations.json`
-- `site_nav.json`
 
-The map is intentionally styled with a white background, a light-green outline (`#66BB6A`), red markers, and dotted explicit connections between selected locations.
+| File | Drives |
+|------|--------|
+| `profile.json` | Name, role, tagline, contact links, hero stats, headshot |
+| `about.json` | About section, quick facts, highlights, interests |
+| `experience.json` | Research and fellowship timeline |
+| `skills.json` | Technical skill groups |
+| `education.json` | Education section (also editable at `/admin`) |
+| `map_locations.json` | Map markers and styling (also editable at `/admin`) |
+| `site_nav.json` | Navigation items |
+
+Optimized site imagery lives in `app/static/img/` (WebP, generated from the source photos in `data/`).
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change, and update tests as appropriate.

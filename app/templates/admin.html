@@ -3,9 +3,9 @@
 {% block title %}Admin Editor{% endblock %}
 
 {% block content %}
-<section class="page-section">
+<section class="admin-section">
     <h1>Admin Editor</h1>
-    <p class="section-intro">Edit content using plain text fields. Data is saved as JSON in the backend.</p>
+    <p class="admin-intro">Edit content using plain text fields. Data is saved as JSON in the backend.</p>
 
     {% if saved %}
     <p class="success-note">Saved section: {{ saved }}</p>
@@ -14,33 +14,33 @@
     <p class="error-note">Could not save section: {{ error }}.</p>
     {% endif %}
 
-    <article class="content-card">
+    <article class="card">
         <h2>Education</h2>
         <form method="post" action="{{ url_for('admin_save', section='education') }}">
-            <label class="admin-label">Current Education Entries</label>
-            <textarea class="json-editor" name="current_education" rows="7">{% for item in education_data.get('current_education', []) %}{{ item.get('school_name', '') }} | {{ item.get('program', '') }} | {{ item.get('location', '') }} | {{ item.get('start_date', '') }} | {{ item.get('grad_date', '') }} | {{ item.get('gpa', '') }} | {{ item.get('classification', '') }} | {{ (item.get('coursework', []) or []) | join('; ') }} | {{ (item.get('extracurriculars', []) or []) | join('; ') }} | {{ (item.get('highlights', []) or []) | join('; ') }}
+            <label class="admin-label" for="current-education">Current Education Entries</label>
+            <textarea class="json-editor" id="current-education" name="current_education" rows="7">{% for item in education_data.get('current_education', []) %}{{ item.get('school_name', '') }} | {{ item.get('program', '') }} | {{ item.get('location', '') }} | {{ item.get('start_date', '') }} | {{ item.get('grad_date', '') }} | {{ item.get('gpa', '') }} | {{ item.get('classification', '') }} | {{ (item.get('coursework', []) or []) | join('; ') }} | {{ (item.get('extracurriculars', []) or []) | join('; ') }} | {{ (item.get('highlights', []) or []) | join('; ') }}
 {% endfor %}</textarea>
 
-            <label class="admin-label">Past Education Entries</label>
-            <textarea class="json-editor" name="past_education" rows="7">{% for item in education_data.get('past_education', []) %}{{ item.get('school_name', '') }} | {{ item.get('program', '') }} | {{ item.get('location', '') }} | {{ item.get('start_date', '') }} | {{ item.get('grad_date', '') }} | {{ item.get('gpa', '') }} | {{ item.get('classification', '') }} | {{ (item.get('coursework', []) or []) | join('; ') }} | {{ (item.get('extracurriculars', []) or []) | join('; ') }} | {{ (item.get('highlights', []) or []) | join('; ') }}
+            <label class="admin-label" for="past-education">Past Education Entries</label>
+            <textarea class="json-editor" id="past-education" name="past_education" rows="7">{% for item in education_data.get('past_education', []) %}{{ item.get('school_name', '') }} | {{ item.get('program', '') }} | {{ item.get('location', '') }} | {{ item.get('start_date', '') }} | {{ item.get('grad_date', '') }} | {{ item.get('gpa', '') }} | {{ item.get('classification', '') }} | {{ (item.get('coursework', []) or []) | join('; ') }} | {{ (item.get('extracurriculars', []) or []) | join('; ') }} | {{ (item.get('highlights', []) or []) | join('; ') }}
 {% endfor %}</textarea>
 
-            <label class="admin-label">Campus Positions (Title; Organization; Details)</label>
-            <textarea class="json-editor" name="campus_positions" rows="4">{% for role in education_data.get('campus_positions', []) %}{{ role.get('title', '') }}; {{ role.get('organization', '') }}; {{ role.get('details', '') }}
+            <label class="admin-label" for="campus-positions">Campus Positions (Title; Organization; Details)</label>
+            <textarea class="json-editor" id="campus-positions" name="campus_positions" rows="4">{% for role in education_data.get('campus_positions', []) %}{{ role.get('title', '') }}; {{ role.get('organization', '') }}; {{ role.get('details', '') }}
 {% endfor %}</textarea>
 
-            <label class="admin-label">Jobs (Title; Organization; Details)</label>
-            <textarea class="json-editor" name="jobs" rows="4">{% for job in education_data.get('jobs', []) %}{{ job.get('title', '') }}; {{ job.get('organization', '') }}; {{ job.get('details', '') }}
+            <label class="admin-label" for="jobs">Jobs (Title; Organization; Details)</label>
+            <textarea class="json-editor" id="jobs" name="jobs" rows="4">{% for job in education_data.get('jobs', []) %}{{ job.get('title', '') }}; {{ job.get('organization', '') }}; {{ job.get('details', '') }}
 {% endfor %}</textarea>
             <div class="admin-actions"><button type="submit">Save Education</button></div>
         </form>
     </article>
 
-    <article class="content-card">
+    <article class="card">
         <h2>Map</h2>
         <form method="post" action="{{ url_for('admin_save', section='map') }}">
-            <label class="admin-label">Locations</label>
-            <textarea class="json-editor" name="locations" rows="8">{% for place in map_data.get('locations', []) %}{{ place.get('name', '') }} | {{ place.get('country', '') }} | {{ place.get('note', '') }}
+            <label class="admin-label" for="locations">Locations (Name | Country | Note)</label>
+            <textarea class="json-editor" id="locations" name="locations" rows="8">{% for place in map_data.get('locations', []) %}{{ place.get('name', '') }} | {{ place.get('country', '') }} | {{ place.get('note', '') }}
 {% endfor %}</textarea>
             <div class="admin-actions"><button type="submit">Save Map</button></div>
         </form>

@@ -1,19 +1,226 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ profile.name }} — {{ profile.role }}{% endblock %}
 
 {% block content %}
-<section class="page-section home-page">
-    <section class="hero" aria-label="Portfolio home">
-        <div class="hero-card">
-            <h1 class="hero-title">{{ title }}</h1>
-            <p class="section-intro">
-                Welcome to your portfolio. Use the menu to open dedicated pages for About, Work, Education, Hobbies, and Map.
-            </p>
-            <p class="section-intro">
-                To update your content, open <a href="{{ url_for('admin') }}">Admin Editor</a>.
-            </p>
+<!-- ============ HERO ============ -->
+<section class="hero" aria-label="Introduction">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <p class="kicker"><span class="kicker-line" aria-hidden="true"></span>{{ profile.role }} — {{ profile.focus }}</p>
+            <h1 class="hero-title">
+                {{ profile.first_name }}<br>
+                <span class="hero-title-accent">{{ profile.last_name }}</span>
+            </h1>
+            <p class="hero-tagline">{{ profile.tagline }}</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#experience">View experience</a>
+                <a class="btn btn-ghost" href="#contact">Get in touch</a>
+            </div>
         </div>
-    </section>
+        <div class="hero-portrait reveal">
+            <img
+                src="{{ url_for('static', filename=profile.headshot) }}"
+                alt="Portrait of {{ profile.name }}"
+                width="720" height="900"
+                fetchpriority="high"
+                decoding="async"
+            >
+            <span class="portrait-corner" aria-hidden="true"></span>
+        </div>
+    </div>
+    <div class="hero-stats" role="list" aria-label="Highlights">
+        {% for stat in profile.stats %}
+        <div class="stat" role="listitem">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about" aria-labelledby="about-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">01</p>
+            <h2 id="about-heading">{{ about.heading or "About" }}</h2>
+        </header>
+        <div class="about-layout">
+            <div class="about-body reveal">
+                {% for paragraph in about.paragraphs %}
+                <p>{{ paragraph }}</p>
+                {% endfor %}
+            </div>
+            <aside class="about-side reveal">
+                <dl class="fact-grid">
+                    {% for fact in about.facts %}
+                    <div class="fact">
+                        <dt>{{ fact.label }}</dt>
+                        <dd>{{ fact.value }}</dd>
+                    </div>
+                    {% endfor %}
+                </dl>
+            </aside>
+        </div>
+        {% if about.highlights %}
+        <ul class="highlight-strip reveal" aria-label="Career highlights">
+            {% for highlight in about.highlights %}
+            <li>{{ highlight }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section section-alt" id="experience" aria-labelledby="experience-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">02</p>
+            <h2 id="experience-heading">{{ experience.heading or "Experience" }}</h2>
+            {% if experience.summary %}<p class="section-summary">{{ experience.summary }}</p>{% endif %}
+        </header>
+        <ol class="timeline">
+            {% for role in experience.roles %}
+            <li class="timeline-item reveal">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <article class="card role-card">
+                    <div class="role-head">
+                        <div>
+                            <p class="role-kind">{{ role.kind }}</p>
+                            <h3 class="role-title">{{ role.title }}</h3>
+                            <p class="role-org">{{ role.organization }}</p>
+                        </div>
+                        {% if role.period %}<p class="role-period">{{ role.period }}</p>{% endif %}
+                    </div>
+                    {% if role.summary %}<p class="role-summary">{{ role.summary }}</p>{% endif %}
+                    {% if role.highlights %}
+                    <ul class="role-highlights">
+                        {% for item in role.highlights %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if role.tags %}
+                    <ul class="tag-list" aria-label="Technologies">
+                        {% for tag in role.tags %}
+                        <li class="tag">{{ tag }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </article>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills" aria-labelledby="skills-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">03</p>
+            <h2 id="skills-heading">{{ skills.heading or "Technical Skills" }}</h2>
+            {% if skills.summary %}<p class="section-summary">{{ skills.summary }}</p>{% endif %}
+        </header>
+        <div class="skills-grid">
+            {% for group in skills.groups %}
+            <article class="card skill-card reveal">
+                <h3>{{ group.name }}</h3>
+                <ul class="tag-list">
+                    {% for item in group["items"] %}
+                    <li class="tag">{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="section section-alt" id="education" aria-labelledby="education-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">04</p>
+            <h2 id="education-heading">Education</h2>
+        </header>
+        {% for item in education.current_education %}
+        <article class="card education-card reveal">
+            <div class="role-head">
+                <div>
+                    <h3 class="role-title">{{ item.school_name }}</h3>
+                    <p class="role-org">{{ item.program }}{% if item.location %} — {{ item.location }}{% endif %}</p>
+                </div>
+                {% if item.grad_date %}<p class="role-period">{{ item.grad_date }}</p>{% endif %}
+            </div>
+            {% if item.highlights %}
+            <ul class="role-highlights">
+                {% for highlight in item.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ============ INTERESTS ============ -->
+<section class="section" id="interests" aria-labelledby="interests-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">05</p>
+            <h2 id="interests-heading">{{ about.interests_heading or "Off the Clock" }}</h2>
+            {% if about.interests_intro %}<p class="section-summary">{{ about.interests_intro }}</p>{% endif %}
+        </header>
+        <div class="interests-grid">
+            {% for interest in about.interests %}
+            <article class="card interest-card reveal">
+                {% if interest.image %}
+                <div class="interest-media">
+                    <img
+                        src="{{ url_for('static', filename=interest.image) }}"
+                        alt="{{ interest.name }}"
+                        width="{{ interest.width }}" height="{{ interest.height }}"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+                {% endif %}
+                <div class="interest-body">
+                    <h3>{{ interest.name }}</h3>
+                    <p>{{ interest.description }}</p>
+                    {% if interest.link %}
+                    <a class="text-link" href="{{ interest.link }}">{{ interest.link_label or "Learn more" }}</a>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section section-contact" id="contact" aria-labelledby="contact-heading">
+    <div class="section-inner">
+        <header class="section-header reveal">
+            <p class="section-index">06</p>
+            <h2 id="contact-heading">Contact</h2>
+        </header>
+        <div class="contact-card card reveal">
+            <p class="contact-lede">Open to software engineering and machine learning opportunities. The fastest lap to my inbox:</p>
+            <div class="contact-actions">
+                {% if profile.email %}
+                <a class="btn btn-primary" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+                {% endif %}
+                {% if profile.github %}
+                <a class="btn btn-ghost" href="{{ profile.github }}" rel="noopener">github.com/{{ profile.github_handle }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}

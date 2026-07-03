@@ -1,0 +1,20 @@
+{
+  "name": "Ngaatendwe Wish Dumbarimwe",
+  "first_name": "Ngaatendwe",
+  "nickname": "Wish",
+  "last_name": "Dumbarimwe",
+  "nav_name": "W. Dumbarimwe",
+  "role": "Software Engineer",
+  "focus": "Machine Learning \u00b7 Distributed Systems",
+  "tagline": "Computer Science student applying machine learning to real-world scientific problems, with a foundation in production engineering and high-performance systems.",
+  "origin": "Zimbabwe",
+  "email": "dumbarimwengaatendwe@gmail.com",
+  "github": "https://github.com/Wish2code",
+  "github_handle": "Wish2code",
+  "headshot": "img/headshot.webp",
+  "stats": [
+    { "value": "3", "label": "Engineering fellowships" },
+    { "value": "CMS", "label": "Research at CERN's CMS experiment" },
+    { "value": "5+", "label": "Generative model families shipped" }
+  ]
+}

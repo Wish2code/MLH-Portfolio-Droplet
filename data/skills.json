@@ -1,0 +1,44 @@
+{
+  "heading": "Technical Skills",
+  "summary": "A toolkit built across machine learning research, production engineering, and fellowship training.",
+  "groups": [
+    {
+      "name": "Machine Learning & AI",
+      "items": [
+        "PyTorch",
+        "Deep Learning",
+        "Generative Models",
+        "Diffusion Models",
+        "Conditional Flow Matching",
+        "Normalizing Flows",
+        "CycleGANs",
+        "Domain Adaptation",
+        "Optimal Transport"
+      ]
+    },
+    {
+      "name": "Systems & Infrastructure",
+      "items": [
+        "Linux",
+        "Networking Fundamentals",
+        "Shell Scripting",
+        "Containers",
+        "Infrastructure Automation",
+        "Production Engineering",
+        "Monitoring & Reliability"
+      ]
+    },
+    {
+      "name": "Software Engineering",
+      "items": [
+        "Python",
+        "Git",
+        "Data Structures & Algorithms",
+        "System Design",
+        "Workflow Automation",
+        "Scientific Computing",
+        "Large-Scale Datasets"
+      ]
+    }
+  ]
+}
