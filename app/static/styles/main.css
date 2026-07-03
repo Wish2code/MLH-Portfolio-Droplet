@@ -766,6 +766,7 @@ a {
 
 /* Text-only interest cards center their content in the available space */
 .interest-card > .interest-body:only-child {
+    grid-row: 1 / -1;
     align-content: center;
     border-top: 3px solid var(--accent);
 }
