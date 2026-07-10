@@ -336,3 +336,11 @@ def delete_timeline_post(post_id):
             "success": False,
             "message": "Timeline post not found."
         }, 404
+
+@app.route('/timeline')
+def timeline():
+    return render_template(
+        'timeline.html',
+        title="Timeline"
+    )
+
