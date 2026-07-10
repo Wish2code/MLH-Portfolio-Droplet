@@ -40,6 +40,14 @@ SECTION_FILE_MAP = {
     "map": "map_locations.json",
 }
 
+# Old multi-page URLs now live as anchors on the single-page layout.
+LEGACY_ROUTE_MAP = {
+    "/about": "/#about",
+    "/work": "/#experience",
+    "/education": "/#education",
+    "/hobbies": "/#interests",
+}
+
 
 def _split_lines(raw_text):
     if not raw_text:
@@ -153,7 +161,7 @@ def _resolve_location_coordinates(name, country):
     )
     request_obj = urllib.request.Request(
         url,
-        headers={"User-Agent": "selisah-portfolio-site/1.0"},
+        headers={"User-Agent": "wish-portfolio-site/1.0"},
     )
     try:
         with urllib.request.urlopen(request_obj, timeout=10) as response:
@@ -174,8 +182,11 @@ def _resolve_location_coordinates(name, country):
 
 
 @app.context_processor
-def inject_nav_items():
-    return {"nav_items": load_nav_items()}
+def inject_shared_context():
+    return {
+        "nav_items": load_nav_items(),
+        "profile": load_json_file("profile.json", fallback={}),
+    }
 
 
 @app.route('/')
@@ -184,40 +195,28 @@ def index():
         'index.html',
         title="Portfolio",
         url=os.getenv("URL"),
+        about=load_json_file("about.json", fallback={}),
+        experience=load_json_file("experience.json", fallback={}),
+        skills=load_json_file("skills.json", fallback={}),
+        education=load_json_file("education.json", fallback={}),
     )
 
 
 @app.route('/about')
-def about():
-    payload = load_json_file("about.json", fallback={})
-    return render_template('about.html', title="About", about=payload)
-
-
 @app.route('/work')
-def work():
-    payload = load_json_file("work.json", fallback={})
-    return render_template('work.html', title="Work", work=payload)
-
-
 @app.route('/education')
-def education():
-    payload = load_json_file("education.json", fallback={})
-    return render_template('education.html', title="Education", education=payload)
-
-
 @app.route('/hobbies')
-def hobbies():
-    payload = load_json_file("hobbies.json", fallback={})
-    return render_template('hobbies.html', title="Hobbies", hobbies=payload)
+def legacy_section_redirect():
+    return redirect(LEGACY_ROUTE_MAP.get(request.path, "/"), code=301)
 
 
 @app.route('/map')
 def map_page():
     fallback_payload = {
         "map_style": {
-            "outline_color": "#66BB6A",
-            "background_color": "#FFFFFF",
-            "marker_color": "#E02424",
+            "outline_color": "#2a2d34",
+            "background_color": "#0b0c10",
+            "marker_color": "#E10600",
             "connector_style": "dotted",
         },
         "locations": [],
@@ -236,9 +235,9 @@ def map_page():
         map_style = {}
 
     payload["map_style"] = {
-        "outline_color": map_style.get("outline_color") or "#66BB6A",
-        "background_color": map_style.get("background_color") or "#FFFFFF",
-        "marker_color": map_style.get("marker_color") or "#E02424",
+        "outline_color": map_style.get("outline_color") or "#2a2d34",
+        "background_color": map_style.get("background_color") or "#0b0c10",
+        "marker_color": map_style.get("marker_color") or "#E10600",
         "connector_style": map_style.get("connector_style") or "dotted",
     }
 
@@ -290,9 +289,9 @@ def admin_save(section):
     elif section == "map":
         parsed_payload = {
             "map_style": {
-                "outline_color": "#66BB6A",
-                "background_color": "#FFFFFF",
-                "marker_color": "#E02424",
+                "outline_color": "#2a2d34",
+                "background_color": "#0b0c10",
+                "marker_color": "#E10600",
                 "connector_style": "dotted",
             },
             "locations": _parse_map_locations(request.form.get("locations", "")),
