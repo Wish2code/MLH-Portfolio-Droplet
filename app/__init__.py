@@ -12,12 +12,16 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:
+    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
 	      user=os.getenv("MYSQL_USER"),
 	      password=os.getenv("MYSQL_PASSWORD"),
 	      host=os.getenv("MYSQL_HOST"),
 	      port=3306
-)
+    )
 
 print(mydb)
 
@@ -303,11 +307,22 @@ def admin_save(section):
 
     return redirect(url_for("admin", saved=section))
 
+import re
+
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
-	name = request.form['name']
-	email = request.form['email']
-	content = request.form['content']
+	name = request.form.get('name', '').strip()
+	if not name:
+		return "Invalid name", 400
+
+	content = request.form.get('content', '').strip()
+	if not content:
+		return "Invalid content", 400
+
+	email = request.form.get('email', '').strip()
+	if not email or not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
+		return "Invalid email", 400
+
 	timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
 	return model_to_dict(timeline_post)
